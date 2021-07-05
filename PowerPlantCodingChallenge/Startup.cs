@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PowerPlantCodingChallenge.Domain;
+using System.Text.Json.Serialization;
 
 namespace PowerPlantCodingChallenge
 {
@@ -20,7 +21,13 @@ namespace PowerPlantCodingChallenge
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IProductionPlanComputer, ProductionPlanComputer>();
-            services.AddControllers();
+
+            services
+                .AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
