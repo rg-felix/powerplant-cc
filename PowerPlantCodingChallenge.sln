@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerPlantCodingChallenge", "PowerPlantCodingChallenge\PowerPlantCodingChallenge.csproj", "{91C64F12-888D-4292-9726-5FB865551C96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPlantCodingChallenge.Tests", "PowerPlantCodingChallenge.Tests\PowerPlantCodingChallenge.Tests.csproj", "{9EB86D88-213D-409A-A89E-F2CB3BD33816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerPlantCodingChallenge.Tests", "PowerPlantCodingChallenge.Tests\PowerPlantCodingChallenge.Tests.csproj", "{9EB86D88-213D-409A-A89E-F2CB3BD33816}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{41D2B16F-0473-4E0E-85EA-69DFA133B727}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
