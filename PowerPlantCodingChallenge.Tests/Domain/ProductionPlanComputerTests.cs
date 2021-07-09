@@ -1,4 +1,5 @@
-﻿using PowerPlantCodingChallenge.Domain;
+﻿using PowerPlantCodingChallenge.Controllers;
+using PowerPlantCodingChallenge.Domain;
 using PowerPlantCodingChallenge.Tests.Helpers;
 using System.Collections.Generic;
 using Xunit;
@@ -12,7 +13,7 @@ namespace PowerPlantCodingChallenge.Tests.Domain
         {
             // arrange
             var request = Helper.FromJsonFile("payload1.json");
-            var plants = Helper.CreatePlants(request);
+            var plants = CodingChallengeController.CreatePlants(request);
 
             var sut = new ProductionPlanComputer();
 
@@ -37,7 +38,7 @@ namespace PowerPlantCodingChallenge.Tests.Domain
         {
             // arrange
             var request = Helper.FromJsonFile("payload2.json");
-            var plants = Helper.CreatePlants(request);
+            var plants = CodingChallengeController.CreatePlants(request);
 
             var sut = new ProductionPlanComputer();
 
@@ -62,7 +63,7 @@ namespace PowerPlantCodingChallenge.Tests.Domain
         {
             // arrange
             var request = Helper.FromJsonFile("payload3.json");
-            var plants = Helper.CreatePlants(request);
+            var plants = CodingChallengeController.CreatePlants(request);
 
             var sut = new ProductionPlanComputer();
 
@@ -82,5 +83,80 @@ namespace PowerPlantCodingChallenge.Tests.Domain
             Assert.Equal(expected, result);
         }
 
+
+        [Fact]
+        public void Payload1_WithCo2_Success()
+        {
+            // arrange
+            var request = Helper.FromJsonFile("payload1.json");
+            var plants = CodingChallengeController.CreatePlantsWithCo2(request);
+
+            var sut = new ProductionPlanComputer();
+
+            // act
+            var result = sut.ComputeLoad(request.Load, plants);
+
+            // assert
+            var expected = new Dictionary<string, double>
+            {
+                ["windpark1"] = 90,
+                ["windpark2"] = 21.6,
+                ["gasfiredbig1"] = 368.4,
+                ["gasfiredbig2"] = 0,
+                ["gasfiredsomewhatsmaller"] = 0,
+                ["tj1"] = 0,
+            };
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void Payload2_WithCo2_Success()
+        {
+            // arrange
+            var request = Helper.FromJsonFile("payload2.json");
+            var plants = CodingChallengeController.CreatePlantsWithCo2(request);
+
+            var sut = new ProductionPlanComputer();
+
+            // act
+            var result = sut.ComputeLoad(request.Load, plants);
+
+            // assert
+            var expected = new Dictionary<string, double>
+            {
+                ["windpark1"] = 0,
+                ["windpark2"] = 0,
+                ["gasfiredbig1"] = 380,
+                ["gasfiredbig2"] = 100,
+                ["gasfiredsomewhatsmaller"] = 0,
+                ["tj1"] = 0,
+            };
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void Payload3_WithCo2_Success()
+        {
+            // arrange
+            var request = Helper.FromJsonFile("payload3.json");
+            var plants = CodingChallengeController.CreatePlantsWithCo2(request);
+
+            var sut = new ProductionPlanComputer();
+
+            // act
+            var result = sut.ComputeLoad(request.Load, plants);
+
+            // assert
+            var expected = new Dictionary<string, double>
+            {
+                ["windpark1"] = 90,
+                ["windpark2"] = 21.6,
+                ["gasfiredbig1"] = 460,
+                ["gasfiredbig2"] = 338.4,
+                ["gasfiredsomewhatsmaller"] = 0,
+                ["tj1"] = 0,
+            };
+            Assert.Equal(expected, result);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace PowerPlantCodingChallenge.Tests
         public void Deserialize_Payload_Success()
         {
             // arrange & act
-            var deserialized = Helper.FromJsonFile("Models/payload0.json");
+            var deserialized = Helper.FromJsonFile("payload0.json");
 
             // assert
 
