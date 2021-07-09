@@ -56,13 +56,6 @@ namespace PowerPlantCodingChallenge.Domain
                     openPlants.Remove(head.Plant);
                     head = head.Previous;
 
-                    // we can also stop exporing the parent node because all following plants are more expensive than the one we just visited
-                    if (openPlants.Count > 0)
-                    {
-                        openPlants.Remove(head.Plant);
-                        head = head.Previous;
-                    }
-
                     continue;
                 }
 
